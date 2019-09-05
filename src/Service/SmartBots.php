@@ -44,6 +44,11 @@ final class SmartBots extends AbstractSmartBotsCommands
         return $this->botSecret;
     }
 
+    /**
+     * Get the first bot from your credentials
+     *
+     * @return SmartBots
+     */
     public function getFirstBot(): self
     {
         if (\is_string(\key($this->botList))) {
@@ -54,6 +59,13 @@ final class SmartBots extends AbstractSmartBotsCommands
         return $this;
     }
 
+    /**
+     * Select a specific bot to run the next commands
+     *
+     * @param string $name
+     *
+     * @return SmartBots
+     */
     public function getBot(string $name): self
     {
         if (isset($this->botList[$name])) {
