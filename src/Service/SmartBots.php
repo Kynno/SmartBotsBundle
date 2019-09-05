@@ -45,7 +45,7 @@ final class SmartBots extends AbstractSmartBotsCommands
     }
 
     /**
-     * Get the first bot from your credentials
+     * Get the first bot from your credentials.
      *
      * @return SmartBots
      */
@@ -60,7 +60,7 @@ final class SmartBots extends AbstractSmartBotsCommands
     }
 
     /**
-     * Select a specific bot to run the next commands
+     * Select a specific bot to run the next commands.
      *
      * @param string $name
      *
