@@ -1,0 +1,33 @@
+{
+    "name": "kynno/smartbots-bundle",
+    "description": "Symfony integration for SmartBots from SecondLife",
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Heyter Nitely"
+        }
+    ],
+    "require": {
+        "php": "^7.1",
+        "symfony/config": "^3.4 || ^4.0",
+        "symfony/dependency-injection": "^3.4 || ^4.0",
+        "symfony/http-kernel": "^3.4 || ^4.0",
+        "symfony/yaml": "^3.4 || ^4.0",
+        "symfony/http-client": "^3.4 || ^4.0"
+    },
+    "require-dev": {
+        "symfony/phpunit-bridge": "^3.4 || ^4.0",
+        "friendsofphp/php-cs-fixer": "^2.15"
+    },
+    "autoload": {
+        "psr-4": {
+            "Kynno\\SmartBotsBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Kynno\\SmartBotsBundle\\Tests\\": "tests/"
+        }
+    }
+}
