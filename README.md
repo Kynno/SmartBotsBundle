@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.com/Kynno/SmartBotsBundle.svg?token=zRjaMaujwSVSWE7UcXcX&branch=master)](https://travis-ci.com/Kynno/SmartBotsBundle)
 
 SmartBots
-=
+============
 [SmartBots](https://www.mysmartbots.com/) is a service provider which allows you to manage your Second Life group and/or control your Second Life bots.
 
 All SmartBots services use the abilities of SL bots: group inviters, group chat translators, automatic notice delivery system etc.
@@ -82,5 +82,6 @@ Once you configured your credentials, you can start using the service.
 ```php
 $this->smartBots->im('Heyter Nitely', "Hey, it's working!");
 ```
+Note: If you don't select a bot before a command, it will auto select the first one. 
 
 Don't hesitate to open the file `AbstractSmartBotsCommands.php` to see how to use the different commands.
