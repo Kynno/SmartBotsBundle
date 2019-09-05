@@ -41,3 +41,38 @@ return [
     Kynno\SmartBotsBundle\SmartBotsBundle::class => ['all' => true],
 ];
 ```
+
+
+Usage
+=======
+The list of the commands available are available on the official website of SmartBots: https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands
+
+In order to use this bundle, you will need to have your [developer API Key](https://www.mysmartbots.com/process/adminbot.html).
+
+This is an example of configuration for `config/packages/smartbots.yaml`,
+
+```yaml
+kynno_smartbots:
+    api_key: <your_api_key>
+    bots:
+        Kynno:
+            name: "KynnoSystem Resident"
+            botSecret: pwd
+        Leekyn:
+            name: "Leekyn Resident"
+            botSecret: pwd
+```
+
+Under the bots key, you can have multiple bots. In this example, `Kynno` and `Leekyn` are the IDs of the bots.
+Using the `SmartBots` service, you need to use these IDs instead of the full name of your bots.
+
+Of course, you can have only one bot.
+
+---
+Once you configured your credentials, you can start using the service.
+
+```php
+$this->smartBots->im('Heyter Nitely', "Hey, it's working!");
+```
+
+Don't hesitate to open the file `AbstractSmartBotsCommands.php` to see how to use the different commands.
