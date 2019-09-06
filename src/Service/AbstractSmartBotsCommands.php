@@ -58,28 +58,6 @@ abstract class AbstractSmartBotsCommands
     }
 
     /**
-     * The set up method. This assigns all bot variables to the public variables.
-     *
-     * @param string $APIKey
-     * @param string $botName
-     * @param string $botSecret
-     *
-     * @return bool
-     */
-    protected function configBot($APIKey = '', $botName = '', $botSecret = ''): bool
-    {
-        if ('' !== $APIKey && '' !== $botName && '' !== $botSecret) {
-            $this->APIKey    = $APIKey;
-            $this->botName   = $botName;
-            $this->botSecret = $botSecret;
-
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    /**
      * These are the official functions from SmartBots.
      * Read more at https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands
      * Note: The parameter "custom" is always optional.
