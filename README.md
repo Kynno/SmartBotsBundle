@@ -1,12 +1,22 @@
+SmartBotsBundle
+============
 [![Build Status](https://travis-ci.com/Kynno/SmartBotsBundle.svg?token=zRjaMaujwSVSWE7UcXcX&branch=master)](https://travis-ci.com/Kynno/SmartBotsBundle)
 
-SmartBots
-============
-[SmartBots](https://www.mysmartbots.com/) is a service provider which allows you to manage your Second Life group and/or control your Second Life bots.
+[SmartBots](https://www.mysmartbots.com/) is a service provider which allows you to manage your Second Life group and/or control your Second Life bots. All SmartBots services use the abilities of SL bots: group inviters, group chat translators, automatic notice delivery system etc.
 
-All SmartBots services use the abilities of SL bots: group inviters, group chat translators, automatic notice delivery system etc.
+This bundle integrates a fast way to use their API with minimum settings. 
 
 You can find more informations about them at http://www.mysmartbots.com/docs/SmartBots_Documentation
+
+
+Prerequisites
+============
+
+In order to use this bundle, you will need to get your [developer API Key](https://www.mysmartbots.com/process/adminbot.html).
+
+* PHP 7.1+
+* Symfony 3.4 / 4.0+
+
 
 Installation 
 ============
@@ -52,10 +62,8 @@ return [
 
 
 Usage
-=======
+============
 The list of the commands available are available on the official website of SmartBots: https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands
-
-In order to use this bundle, you will need to have your [developer API Key](https://www.mysmartbots.com/process/adminbot.html).
 
 This is an example of configuration for `config/packages/smartbots.yaml`,
 
