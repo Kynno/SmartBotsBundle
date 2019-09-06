@@ -1,7 +1,17 @@
 <?php
 
+/*
+ * This file is part of the Kynno/SmartBotsBundle package.
+ *
+ * (c) Kynno <contact@kynno.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Kynno\SmartBotsBundle\Service;
 
+use Kynno\SmartBotsBundle\Exception\SmartBotsException;
 use Symfony\Component\HttpClient\HttpClient;
 
 abstract class AbstractSmartBotsCommands
@@ -45,29 +55,11 @@ abstract class AbstractSmartBotsCommands
         \parse_str($request->getContent(), $queryResponseArray);
         $queryResponseArray['request_object'] = $request;
 
-        return $queryResponseArray;
-    }
-
-    /**
-     * The set up method. This assigns all bot variables to the public variables.
-     *
-     * @param string $APIKey
-     * @param string $botName
-     * @param string $botSecret
-     *
-     * @return bool
-     */
-    protected function configBot($APIKey = '', $botName = '', $botSecret = ''): bool
-    {
-        if ('' !== $APIKey && '' !== $botName && '' !== $botSecret) {
-            $this->APIKey    = $APIKey;
-            $this->botName   = $botName;
-            $this->botSecret = $botSecret;
-
-            return true;
-        } else {
-            return false;
+        if ('OK' !== $queryResponseArray['result']) {
+            throw new SmartBotsException($queryResponseArray['resulttext']);
         }
+
+        return $queryResponseArray;
     }
 
     /**
