@@ -11,6 +11,7 @@
 
 namespace Kynno\SmartBotsBundle\Service;
 
+use Kynno\SmartBotsBundle\Exception\SmartBotsException;
 use Symfony\Component\HttpClient\HttpClient;
 
 abstract class AbstractSmartBotsCommands
@@ -53,6 +54,10 @@ abstract class AbstractSmartBotsCommands
         $request            = $client->request('GET', $this->APIUrl . '?' . $this->buildQueryString());
         \parse_str($request->getContent(), $queryResponseArray);
         $queryResponseArray['request_object'] = $request;
+
+        if ('OK' !== $queryResponseArray['result']) {
+            throw new SmartBotsException($queryResponseArray['resulttext']);
+        }
 
         return $queryResponseArray;
     }
