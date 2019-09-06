@@ -1,5 +1,13 @@
 [![Build Status](https://travis-ci.com/Kynno/SmartBotsBundle.svg?token=zRjaMaujwSVSWE7UcXcX&branch=master)](https://travis-ci.com/Kynno/SmartBotsBundle)
 
+SmartBots
+============
+[SmartBots](https://www.mysmartbots.com/) is a service provider which allows you to manage your Second Life group and/or control your Second Life bots.
+
+All SmartBots services use the abilities of SL bots: group inviters, group chat translators, automatic notice delivery system etc.
+
+You can find more informations about them at http://www.mysmartbots.com/docs/SmartBots_Documentation
+
 Installation 
 ============
 
@@ -41,3 +49,43 @@ return [
     Kynno\SmartBotsBundle\SmartBotsBundle::class => ['all' => true],
 ];
 ```
+
+
+Usage
+=======
+The list of the commands available are available on the official website of SmartBots: https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands
+
+In order to use this bundle, you will need to have your [developer API Key](https://www.mysmartbots.com/process/adminbot.html).
+
+This is an example of configuration for `config/packages/smartbots.yaml`,
+
+```yaml
+kynno_smartbots:
+    api_key: <your_api_key>
+    bots:
+        Kynno:
+            name: "KynnoSystem Resident"
+            botSecret: pwd
+        Leekyn:
+            name: "Leekyn Resident"
+            botSecret: pwd
+```
+
+Under the bots key, you can have multiple bots. In this example, `Kynno` and `Leekyn` are the IDs of the bots.
+Using the `SmartBots` service, you need to use these IDs instead of the full name of your bots.
+
+Of course, you can have only one bot.
+
+---
+Once you configured your credentials, you can start using the service.
+
+```php
+<?php
+
+$this->smartBots->im('Heyter Nitely', "Hey, it's working!");
+// or
+$this->smartBots->getBot('Leekyn')->im('Heyter Nitely', "Hey, it's working with a specific bot!");
+```
+Note: If you don't select a bot before a command, it will auto select the first one. 
+
+Don't hesitate to open the file `AbstractSmartBotsCommands.php` to see how to use the different commands.
