@@ -80,7 +80,11 @@ Of course, you can have only one bot.
 Once you configured your credentials, you can start using the service.
 
 ```php
+<?php
+
 $this->smartBots->im('Heyter Nitely', "Hey, it's working!");
+// or
+$this->smartBots->getBot('Leekyn')->im('Heyter Nitely', "Hey, it's working with a specific bot!");
 ```
 Note: If you don't select a bot before a command, it will auto select the first one. 
 
