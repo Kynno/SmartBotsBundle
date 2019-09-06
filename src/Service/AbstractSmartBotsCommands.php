@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the Kynno/SmartBotsBundle package.
+ *
+ * (c) Kynno <contact@kynno.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Kynno\SmartBotsBundle\Service;
 
 use Symfony\Component\HttpClient\HttpClient;
