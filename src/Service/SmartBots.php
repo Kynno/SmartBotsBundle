@@ -11,7 +11,7 @@
 
 namespace Kynno\SmartBotsBundle\Service;
 
-final class SmartBots extends AbstractSmartBotsCommands
+class SmartBots extends AbstractSmartBotsCommands
 {
     /**
      * {@inheritdoc}
