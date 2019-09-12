@@ -958,15 +958,14 @@ abstract class AbstractSmartBotsCommands
      *
      * @see https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/sim_access
      *
-     * @param string $avatar      The resident to manage access for
+     * @param string $avatar     The resident to manage access for
      * @param string $operation
-     *                            The operation to perform. One of the following:
-     *                            ban         - add to ban list
-     *                            unban       - remove from ban list
-     *                            allow       - add to allowed list
-     *                            disallow    - remove from allowed list
-     * @param int    $allEstates
-     *                            (optional) If TRUE (or 1), perform operation for all estates available for bot
+     *                           The operation to perform. One of the following:
+     *                           ban         - add to ban list
+     *                           unban       - remove from ban list
+     *                           allow       - add to allowed list
+     *                           disallow    - remove from allowed list
+     * @param int    $allEstates (optional) If TRUE (or 1), perform operation for all estates available for bot
      * @param string $custom
      *
      * @return array
@@ -1098,8 +1097,8 @@ abstract class AbstractSmartBotsCommands
      *
      * @see https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/sit
      *
-     * @param string $uuid the UUID of the object to sit on. Use NONE instead of UUID to stand up.
-     * @param string $save (optional) set this parameter to 1 to save the UUID as a permanent sitting location. Bot will sit on this object after relog, crash and sim restart.
+     * @param string $uuid   the UUID of the object to sit on. Use NONE instead of UUID to stand up.
+     * @param string $save   (optional) set this parameter to 1 to save the UUID as a permanent sitting location. Bot will sit on this object after relog, crash and sim restart.
      * @param string $custom
      *
      * @return array
@@ -1124,9 +1123,9 @@ abstract class AbstractSmartBotsCommands
      *
      * @see https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/takeoff
      *
-     * @param string $uuid The inventory UUID of the item.
-     *                     Use the http://www.mysmartbots.com/docs/Personal_Bot_Control_Panel or https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/listinventory
-     *                     API command to get this UUID.
+     * @param string $uuid   The inventory UUID of the item.
+     *                       Use the http://www.mysmartbots.com/docs/Personal_Bot_Control_Panel or https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/listinventory
+     *                       API command to get this UUID.
      * @param string $custom
      *
      * @return array
@@ -1208,7 +1207,7 @@ abstract class AbstractSmartBotsCommands
      *
      * @see https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/touch_prim
      *
-     * @param string $uuid the UUID of the required prim
+     * @param string $uuid   the UUID of the required prim
      * @param string $custom
      *
      * @return array
