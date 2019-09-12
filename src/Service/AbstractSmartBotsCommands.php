@@ -73,8 +73,7 @@ abstract class AbstractSmartBotsCommands
      *
      * @see https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/activate_group
      *
-     * @param string $groupuuid
-     *                          the UUID of the group to activate
+     * @param string $groupUuid the UUID of the group to activate
      *                          Special values:
      *                          LAND - set the group to the current parcel's group (see examples)
      *                          00000000-0000-0000-0000-000000000000 - remove active group
@@ -86,11 +85,11 @@ abstract class AbstractSmartBotsCommands
      *               FAIL    - command failed
      *               resulttext      Detailed reason for the failure
      */
-    public function activate_group(string $groupuuid = '', string $custom = ''): array
+    public function activateGroup(string $groupUuid = '', string $custom = ''): array
     {
         $this->queryParams              = [];
         $this->queryParams['action']    = 'activate_group';
-        $this->queryParams['groupuuid'] = $groupuuid;
+        $this->queryParams['groupuuid'] = $groupUuid;
         $this->queryParams['custom']    = $custom;
 
         return $this->runAction();
@@ -101,14 +100,9 @@ abstract class AbstractSmartBotsCommands
      *
      * @see https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/attachments
      *
-     * @param string $skipnames
-     *                           (optional) Skip attachment (do not return) if its name contains this substring (case
-     *                           insensitive)
-     * @param string $matchnames
-     *                           (optional) Return only attachment those which name contain this substring (case
-     *                           insensitive)
-     * @param string $matchuuid
-     *                           (optional) Return attachment with this UUID only
+     * @param string $skipNames  (optional) Skip attachment (do not return) if its name contains this substring (case insensitive)
+     * @param string $matchNames (optional) Return only attachment those which name contain this substring (case insensitive)
+     * @param string $matchUuid  (optional) Return attachment with this UUID only
      * @param string $custom
      *
      * @return array
@@ -121,16 +115,16 @@ abstract class AbstractSmartBotsCommands
      *               May be affected by skip* and match* parameters. See the "Return value" section below.
      */
     public function attachments(
-        string $skipnames = '',
-        string $matchnames = '',
-        string $matchuuid = '',
+        string $skipNames = '',
+        string $matchNames = '',
+        string $matchUuid = '',
         string $custom = ''
     ): array {
         $this->queryParams               = [];
         $this->queryParams['action']     = 'attachments';
-        $this->queryParams['skipnames']  = $skipnames;
-        $this->queryParams['matchnames'] = $matchnames;
-        $this->queryParams['matchuuid']  = $matchuuid;
+        $this->queryParams['skipnames']  = $skipNames;
+        $this->queryParams['matchnames'] = $matchNames;
+        $this->queryParams['matchuuid']  = $matchUuid;
         $this->queryParams['custom']     = $custom;
 
         return $this->runAction();
@@ -141,16 +135,10 @@ abstract class AbstractSmartBotsCommands
      *
      * @see https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/avatar_groups
      *
-     * @param string $avatar
-     *                           Avatar UUID to fetch groups for
-     * @param string $skipnames
-     *                           (optional) Skip group (do not return) if its name contains this substring (case
-     *                           insensitive)
-     * @param string $matchnames
-     *                           (optional) Return only groups those which names contain this substring (case
-     *                           insensitive)
-     * @param string $matchuuid
-     *                           (optional) Return groups with this UUID only
+     * @param string $avatar     Avatar UUID to fetch groups for
+     * @param string $skipNames  (optional) Skip group (do not return) if its name contains this substring (case insensitive)
+     * @param string $matchNames (optional) Return only groups those which names contain this substring (case insensitive)
+     * @param string $matchUuid  (optional) Return groups with this UUID only
      * @param string $custom
      *
      * @return array
@@ -162,14 +150,19 @@ abstract class AbstractSmartBotsCommands
      *               groups          The list of resident's groups: UUIDs and names.
      *               This list may be affected by skip* and match* parameters. See the "Return value" section below.
      */
-    public function avatar_groups($avatar = '', $skipnames = '', $matchnames = '', $matchuuid = '', $custom = ''): array
-    {
+    public function avatarGroups(
+        string $avatar = '',
+        string $skipNames = '',
+        string $matchNames = '',
+        string $matchUuid = '',
+        string $custom = ''
+    ): array {
         $this->queryParams               = [];
         $this->queryParams['action']     = 'avatar_groups';
         $this->queryParams['avatar']     = $avatar;
-        $this->queryParams['skipnames']  = $skipnames;
-        $this->queryParams['matchnames'] = $matchnames;
-        $this->queryParams['matchuuid']  = $matchuuid;
+        $this->queryParams['skipnames']  = $skipNames;
+        $this->queryParams['matchnames'] = $matchNames;
+        $this->queryParams['matchuuid']  = $matchUuid;
         $this->queryParams['custom']     = $custom;
 
         return $this->runAction();
@@ -180,15 +173,10 @@ abstract class AbstractSmartBotsCommands
      *
      * @see https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/avatar_picks
      *
-     * @param string $avatar
-     *                           Avatar UUID to fetch picks for
-     * @param string $skipnames
-     *                           (optional) Skip pick (do not return) if its name contains this substring (case
-     *                           insensitive)
-     * @param string $matchnames
-     *                           (optional) Return only picks which names contain this substring (case insensitive)
-     * @param string $matchuuid
-     *                           (optional) Return pick with this parcel UUID only
+     * @param string $avatar     Avatar UUID to fetch picks for
+     * @param string $skipNames  (optional) Skip pick (do not return) if its name contains this substring (case insensitive)
+     * @param string $matchNames (optional) Return only picks which names contain this substring (case insensitive)
+     * @param string $matchUuid  (optional) Return pick with this parcel UUID only
      * @param string $custom
      *
      * @return array
@@ -200,19 +188,19 @@ abstract class AbstractSmartBotsCommands
      *               picks           The list of resident's picks: parcel UUIDs and names.
      *               This list may be affected by skip* and match* parameters. See the "Return value" section below.
      */
-    public function avatar_picks(
+    public function avatarPicks(
         string $avatar = '',
-        string $skipnames = '',
-        string $matchnames = '',
-        string $matchuuid = '',
+        string $skipNames = '',
+        string $matchNames = '',
+        string $matchUuid = '',
         string $custom = ''
     ): array {
         $this->queryParams               = [];
         $this->queryParams['action']     = 'avatar_picks';
         $this->queryParams['avatar']     = $avatar;
-        $this->queryParams['skipnames']  = $skipnames;
-        $this->queryParams['matchnames'] = $matchnames;
-        $this->queryParams['matchuuid']  = $matchuuid;
+        $this->queryParams['skipnames']  = $skipNames;
+        $this->queryParams['matchnames'] = $matchNames;
+        $this->queryParams['matchuuid']  = $matchUuid;
         $this->queryParams['custom']     = $custom;
 
         return $this->runAction();
@@ -231,7 +219,7 @@ abstract class AbstractSmartBotsCommands
      *               resulttext      Detailed reason for the failure.
      *               balance         The balance of the bot
      */
-    public function get_balance(string $custom = ''): array
+    public function getBalance(string $custom = ''): array
     {
         $this->queryParams           = [];
         $this->queryParams['action'] = 'get_balance';
@@ -245,11 +233,8 @@ abstract class AbstractSmartBotsCommands
      *
      * @see https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/give_inventory
      *
-     * @param string $avatar
-     *                       The avatar UUID
-     * @param string $object
-     *                       The inventory or folder UUID of the item. Use the Personal Bot Control Panel or
-     *                       listinventory API command to get this UUID.
+     * @param string $avatar The avatar UUID
+     * @param string $object The inventory or folder UUID of the item. Use the Personal Bot Control Panel or listinventory API command to get this UUID.
      * @param string $custom
      *
      * @return array
@@ -257,7 +242,7 @@ abstract class AbstractSmartBotsCommands
      *               FAIL    - command failed
      *               resulttext      Detailed reason for the failure
      */
-    public function give_inventory(string $avatar = '', string $object = '', string $custom = ''): array
+    public function giveInventory(string $avatar = '', string $object = '', string $custom = ''): array
     {
         $this->queryParams           = [];
         $this->queryParams['action'] = 'give_inventory';
@@ -273,12 +258,9 @@ abstract class AbstractSmartBotsCommands
      *
      * @see https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/give_money
      *
-     * @param string $avatar
-     *                        The avatar UUID
-     * @param string $amount
-     *                        The amount of money to give
-     * @param string $comment
-     *                        (optional) Text comment for the money transaction
+     * @param string $avatar  The avatar UUID
+     * @param string $amount  The amount of money to give
+     * @param string $comment (optional) Text comment for the money transaction
      * @param string $custom
      *
      * @return array
@@ -286,7 +268,7 @@ abstract class AbstractSmartBotsCommands
      *               FAIL    - command failed
      *               resulttext      Detailed reason for the failure
      */
-    public function give_money(
+    public function giveMoney(
         string $avatar = '',
         string $amount = '',
         string $comment = '',
@@ -307,12 +289,9 @@ abstract class AbstractSmartBotsCommands
      *
      * @see https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/give_money
      *
-     * @param string $object_uuid
-     *                            The object UUID
-     * @param string $amount
-     *                            The amount of money to give
-     * @param string $object_name
-     *                            (optional) Object name
+     * @param string $objectUuid The object UUID
+     * @param string $amount     The amount of money to give
+     * @param string $objectName (optional) Object name
      * @param string $custom
      *
      * @return array
@@ -320,17 +299,17 @@ abstract class AbstractSmartBotsCommands
      *               FAIL    - command failed
      *               resulttext      Detailed reason for the failure
      */
-    public function give_money_object(
-        string $object_uuid = '',
+    public function giveMoneyObject(
+        string $objectUuid = '',
         string $amount = '',
-        string $object_name = '',
+        string $objectName = '',
         string $custom = ''
     ): array {
         $this->queryParams                = [];
         $this->queryParams['action']      = 'give_money_object';
-        $this->queryParams['object_uuid'] = $object_uuid;
+        $this->queryParams['object_uuid'] = $objectUuid;
         $this->queryParams['amount']      = $amount;
-        $this->queryParams['object_name'] = $object_name;
+        $this->queryParams['object_name'] = $objectName;
         $this->queryParams['custom']      = $custom;
 
         return $this->runAction();
@@ -341,10 +320,8 @@ abstract class AbstractSmartBotsCommands
      *
      * @see https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/group_eject
      *
-     * @param string $avatar
-     *                          the UUID of the resident
-     * @param string $groupuuid
-     *                          the UUID of the group
+     * @param string $avatar    the UUID of the resident
+     * @param string $groupUuid the UUID of the group
      * @param string $custom
      *
      * @return array
@@ -352,12 +329,12 @@ abstract class AbstractSmartBotsCommands
      *               FAIL    - command failed
      *               resulttext      Detailed reason for the failure
      */
-    public function group_eject(string $avatar = '', string $groupuuid = '', string $custom = ''): array
+    public function groupEject(string $avatar = '', string $groupUuid = '', string $custom = ''): array
     {
         $this->queryParams              = [];
         $this->queryParams['action']    = 'group_eject';
         $this->queryParams['avatar']    = $avatar;
-        $this->queryParams['groupuuid'] = $groupuuid;
+        $this->queryParams['groupuuid'] = $groupUuid;
         $this->queryParams['custom']    = $custom;
 
         return $this->runAction();
@@ -368,14 +345,10 @@ abstract class AbstractSmartBotsCommands
      *
      * @see https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/group_invite
      *
-     * @param string $avatar
-     *                                 the UUID of the resident
-     * @param string $groupuuid
-     *                                 the UUID of the group
-     * @param string $roleuuid
-     *                                 the UUID of the group role (NULL_KEY for "Everyone")
-     * @param string $check_membership
-     *                                 set to 1 if you want to ignore existing group members (see "Comments" below)
+     * @param string $avatar          the UUID of the resident
+     * @param string $groupUuid       the UUID of the group
+     * @param string $roleUuid        the UUID of the group role (NULL_KEY for "Everyone")
+     * @param string $checkMembership set to 1 if you want to ignore existing group members (see "Comments" below)
      * @param string $custom
      *
      * @return array
@@ -383,19 +356,19 @@ abstract class AbstractSmartBotsCommands
      *               FAIL    - command failed
      *               resulttext      Detailed reason for the failure
      */
-    public function group_invite(
+    public function groupInvite(
         string $avatar = '',
-        string $groupuuid = '',
-        string $roleuuid = '',
-        string $check_membership = '',
+        string $groupUuid = '',
+        string $roleUuid = '',
+        string $checkMembership = '',
         string $custom = ''
     ): array {
         $this->queryParams                     = [];
         $this->queryParams['action']           = 'group_invite';
         $this->queryParams['avatar']           = $avatar;
-        $this->queryParams['groupuuid']        = $groupuuid;
-        $this->queryParams['roleuuid']         = $roleuuid;
-        $this->queryParams['check_membership'] = $check_membership;
+        $this->queryParams['groupuuid']        = $groupUuid;
+        $this->queryParams['roleuuid']         = $roleUuid;
+        $this->queryParams['check_membership'] = $checkMembership;
         $this->queryParams['custom']           = $custom;
 
         return $this->runAction();
@@ -406,8 +379,7 @@ abstract class AbstractSmartBotsCommands
      *
      * @see https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/group_join
      *
-     * @param string $groupuuid
-     *                          the UUID of the group
+     * @param string $groupUuid the UUID of the group
      * @param string $custom
      *
      * @return array
@@ -415,11 +387,11 @@ abstract class AbstractSmartBotsCommands
      *               FAIL    - command failed
      *               resulttext      Detailed reason for the failure
      */
-    public function group_join(string $groupuuid = '', string $custom = ''): array
+    public function groupJoin(string $groupUuid = '', string $custom = ''): array
     {
         $this->queryParams              = [];
         $this->queryParams['action']    = 'group_join';
-        $this->queryParams['groupuuid'] = $groupuuid;
+        $this->queryParams['groupuuid'] = $groupUuid;
         $this->queryParams['custom']    = $custom;
 
         return $this->runAction();
@@ -430,8 +402,7 @@ abstract class AbstractSmartBotsCommands
      *
      * @see https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/group_leave
      *
-     * @param string $groupuuid
-     *                          the UUID of the group
+     * @param string $groupUuid the UUID of the group
      * @param string $custom
      *
      * @return array
@@ -439,11 +410,11 @@ abstract class AbstractSmartBotsCommands
      *               FAIL    - command failed
      *               resulttext      Detailed reason for the failure
      */
-    public function group_leave(string $groupuuid = '', string $custom = ''): array
+    public function groupLeave(string $groupUuid = '', string $custom = ''): array
     {
         $this->queryParams              = [];
         $this->queryParams['action']    = 'group_leave';
-        $this->queryParams['groupuuid'] = $groupuuid;
+        $this->queryParams['groupuuid'] = $groupUuid;
         $this->queryParams['custom']    = $custom;
 
         return $this->runAction();
@@ -454,10 +425,8 @@ abstract class AbstractSmartBotsCommands
      *
      * @see https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/im
      *
-     * @param string $slname
-     *                        Second Life login name of avatar or avatar UUID
-     * @param string $message
-     *                        The message to send
+     * @param string $slName  Second Life login name of avatar or avatar UUID
+     * @param string $message The message to send
      * @param string $custom
      *
      * @return array
@@ -465,11 +434,11 @@ abstract class AbstractSmartBotsCommands
      *               FAIL    - command failed
      *               resulttext      Detailed reason for the failure
      */
-    public function im(string $slname = '', string $message = '', string $custom = ''): array
+    public function im(string $slName = '', string $message = '', string $custom = ''): array
     {
         $this->queryParams            = [];
         $this->queryParams['action']  = 'im';
-        $this->queryParams['slname']  = $slname;
+        $this->queryParams['slname']  = $slName;
         $this->queryParams['message'] = $message;
         $this->queryParams['custom']  = $custom;
 
@@ -481,11 +450,8 @@ abstract class AbstractSmartBotsCommands
      *
      * @see https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/key2name
      *
-     * @param string $key
-     *                             the UUID of the avatar
-     * @param int    $request_case
-     *                             set to 1 if you want to get SL name in exact case (otherwise name may come in lower
-     *                             case)
+     * @param string $key         the UUID of the avatar
+     * @param int    $requestCase set to 1 if you want to get SL name in exact case (otherwise name may come in lower case)
      * @param string $custom
      *
      * @return array
@@ -496,12 +462,12 @@ abstract class AbstractSmartBotsCommands
      *               key             The UUID you've sent
      *               name            Second Life name of the avatar
      */
-    public function key2name(string $key = '', int $request_case = 1, string $custom = ''): array
+    public function key2name(string $key = '', int $requestCase = 1, string $custom = ''): array
     {
         $this->queryParams                 = [];
         $this->queryParams['action']       = 'key2name';
         $this->queryParams['key']          = $key;
-        $this->queryParams['request_case'] = $request_case;
+        $this->queryParams['request_case'] = $requestCase;
         $this->queryParams['custom']       = $custom;
 
         return $this->runAction();
@@ -512,8 +478,7 @@ abstract class AbstractSmartBotsCommands
      *
      * @see https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/list_group_roles
      *
-     * @param string $groupuuid
-     *                          the UUID of the group
+     * @param string $groupUuid the UUID of the group
      * @param string $custom
      *
      * @return array
@@ -522,11 +487,11 @@ abstract class AbstractSmartBotsCommands
      *               resulttext      Detailed reason for the failure
      *               roles           The list of the role UUIDs and names, separated by a new-line ("\n")
      */
-    public function list_group_roles(string $groupuuid = '', string $custom = ''): array
+    public function listGroupRoles(string $groupUuid = '', string $custom = ''): array
     {
         $this->queryParams              = [];
         $this->queryParams['action']    = 'list_group_roles';
-        $this->queryParams['groupuuid'] = $groupuuid;
+        $this->queryParams['groupuuid'] = $groupUuid;
         $this->queryParams['custom']    = $custom;
 
         return $this->runAction();
@@ -560,8 +525,7 @@ abstract class AbstractSmartBotsCommands
      *
      * @see https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/listinventory
      *
-     * @param string $uuid
-     *                         The optional UUID of the folder. Leave blank to list the root folder.
+     * @param string $uuid     The optional UUID of the folder. Leave blank to list the root folder.
      * @param string $extended
      *                         Set this to 1 to get an extended output. This output includes:
      *                         - the object's name becomes URL-encoded
@@ -622,7 +586,6 @@ abstract class AbstractSmartBotsCommands
      */
     public function logout(string $custom = ''): array
     {
-        // Clean the current query array.
         $this->queryParams           = [];
         $this->queryParams['action'] = 'logout';
         $this->queryParams['custom'] = $custom;
@@ -671,11 +634,8 @@ abstract class AbstractSmartBotsCommands
      *
      * @see https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/name2key
      *
-     * @param string $name
-     *                             the Second Life name of the avatar
-     * @param int    $request_case
-     *                             (optional) set to 1 if you want to get the exact avatar name case from Second Life
-     *                             (see Name case)
+     * @param string $name        the Second Life name of the avatar
+     * @param int    $requestCase (optional) set to 1 if you want to get the exact avatar name case from Second Life (see Name case)
      * @param string $custom
      *
      * @return array
@@ -687,12 +647,12 @@ abstract class AbstractSmartBotsCommands
      *               name            Second Life name you've sent
      *               normalname      Second Life name, normalized (see "Return value")
      */
-    public function name2key(string $name = '', int $request_case = 1, string $custom = ''): array
+    public function name2key(string $name = '', int $requestCase = 1, string $custom = ''): array
     {
         $this->queryParams                 = [];
         $this->queryParams['action']       = 'name2key';
         $this->queryParams['name']         = $name;
-        $this->queryParams['request_case'] = $request_case;
+        $this->queryParams['request_case'] = $requestCase;
         $this->queryParams['custom']       = $custom;
 
         return $this->runAction();
@@ -703,10 +663,8 @@ abstract class AbstractSmartBotsCommands
      *
      * @see https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/offer_friendship
      *
-     * @param string $avatar
-     *                        the UUID of the resident
-     * @param string $message
-     *                        (optional) optional message to send
+     * @param string $avatar  the UUID of the resident
+     * @param string $message (optional) optional message to send
      * @param string $custom
      *
      * @return array
@@ -714,7 +672,7 @@ abstract class AbstractSmartBotsCommands
      *               FAIL    - command failed
      *               resulttext      Detailed reason for the failure
      */
-    public function offer_friendship(string $avatar = '', string $message = '', string $custom = ''): array
+    public function offerFriendship(string $avatar = '', string $message = '', string $custom = ''): array
     {
         $this->queryParams            = [];
         $this->queryParams['action']  = 'offer_friendship';
@@ -730,10 +688,8 @@ abstract class AbstractSmartBotsCommands
      *
      * @see https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/offer_teleport
      *
-     * @param string $uuid
-     *                        the UUID of the resident
-     * @param string $message
-     *                        (optional) optional message to send
+     * @param string $uuid    the UUID of the resident
+     * @param string $message (optional) optional message to send
      * @param string $custom
      *
      * @return array
@@ -741,7 +697,7 @@ abstract class AbstractSmartBotsCommands
      *               FAIL    - command failed
      *               resulttext      Detailed reason for the failure
      */
-    public function offer_teleport(string $uuid = '', string $message = '', string $custom = ''): array
+    public function offerTeleport(string $uuid = '', string $message = '', string $custom = ''): array
     {
         $this->queryParams            = [];
         $this->queryParams['action']  = 'offer_teleport';
@@ -757,12 +713,9 @@ abstract class AbstractSmartBotsCommands
      *
      * @see https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/parcel_info
      *
-     * @param string $x
-     *                         (optional) the X coordinate of the point in parcel
-     * @param string $y
-     *                         (optional) the Y coordinate of the point in parcel
-     * @param string $getvalue
-     *                         (optional) limit return list to this entry (see return values below)
+     * @param string $x        (optional) the X coordinate of the point in parcel
+     * @param string $y        (optional) the Y coordinate of the point in parcel
+     * @param string $getValue (optional) limit return list to this entry (see return values below)
      * @param string $custom
      *
      * @return array
@@ -788,13 +741,13 @@ abstract class AbstractSmartBotsCommands
      *               parcel_landingpoint The landing point of the parcel.
      *               parcel_flags        Various flags, separated by commas.
      */
-    public function parcel_info(string $x = '', string $y = '', string $getvalue = '', string $custom = ''): array
+    public function parcelInfo(string $x = '', string $y = '', string $getValue = '', string $custom = ''): array
     {
         $this->queryParams             = [];
         $this->queryParams['action']   = 'parcel_info';
         $this->queryParams['x']        = $x;
         $this->queryParams['y']        = $y;
-        $this->queryParams['getvalue'] = $getvalue;
+        $this->queryParams['getvalue'] = $getValue;
         $this->queryParams['custom']   = $custom;
 
         return $this->runAction();
@@ -839,7 +792,7 @@ abstract class AbstractSmartBotsCommands
      *               FAIL    - command failed
      *               resulttext      Detailed reason for the failure
      */
-    public function reply_dialog(
+    public function replyDialog(
         int $channel = -1,
         string $object = '',
         string $button = '',
@@ -860,10 +813,8 @@ abstract class AbstractSmartBotsCommands
      *
      * @see https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/say_chat_channel
      *
-     * @param int    $channel
-     *                        the channel to say message over (0 - public chat)
-     * @param string $message
-     *                        The message to send
+     * @param int    $channel the channel to say message over (0 - public chat)
+     * @param string $message the message to send
      * @param string $custom
      *
      * @return array
@@ -871,7 +822,7 @@ abstract class AbstractSmartBotsCommands
      *               FAIL    - command failed
      *               resulttext      Detailed reason for the failure
      */
-    public function say_chat_channel(int $channel = -1, string $message = '', string $custom = ''): array
+    public function sayChatChannel(int $channel = -1, string $message = '', string $custom = ''): array
     {
         $this->queryParams            = [];
         $this->queryParams['action']  = 'say_chat_channel';
@@ -887,10 +838,8 @@ abstract class AbstractSmartBotsCommands
      *
      * @see https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/send_group_im
      *
-     * @param string $groupuuid
-     *                          the UUID of the group
-     * @param string $message
-     *                          the text to send (can contain international characters)
+     * @param string $groupUuid the UUID of the group
+     * @param string $message   the text to send (can contain international characters)
      * @param string $custom
      *
      * @return array
@@ -898,11 +847,11 @@ abstract class AbstractSmartBotsCommands
      *               FAIL    - command failed
      *               resulttext      Detailed reason for the failure
      */
-    public function send_group_im(string $groupuuid = '', string $message = '', string $custom = ''): array
+    public function sendGroupIm(string $groupUuid = '', string $message = '', string $custom = ''): array
     {
         $this->queryParams              = [];
         $this->queryParams['action']    = 'send_group_im';
-        $this->queryParams['groupuuid'] = $groupuuid;
+        $this->queryParams['groupuuid'] = $groupUuid;
         $this->queryParams['message']   = $message;
         $this->queryParams['custom']    = $custom;
 
@@ -914,14 +863,10 @@ abstract class AbstractSmartBotsCommands
      *
      * @see https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/send_notice
      *
-     * @param string $groupuuid
-     *                           the UUID of the group
-     * @param string $subject
-     *                           the subject of the notice (can't contain international characters)
-     * @param string $text
-     *                           the text of the notice (can contain international characters)
-     * @param string $attachment
-     *                           (optional) inventory UUID of the attachment (see below)
+     * @param string $groupUuid  the UUID of the group
+     * @param string $subject    the subject of the notice (can't contain international characters)
+     * @param string $text       the text of the notice (can contain international characters)
+     * @param string $attachment (optional) inventory UUID of the attachment (see below)
      * @param string $custom
      *
      * @return array
@@ -929,8 +874,8 @@ abstract class AbstractSmartBotsCommands
      *               FAIL    - command failed
      *               resulttext      Detailed reason for the failure
      */
-    public function send_notice(
-        string $groupuuid = '',
+    public function sendNotice(
+        string $groupUuid = '',
         string $subject = '',
         string $text = '',
         string $attachment = '',
@@ -938,7 +883,7 @@ abstract class AbstractSmartBotsCommands
     ): array {
         $this->queryParams               = [];
         $this->queryParams['action']     = 'send_notice';
-        $this->queryParams['groupuuid']  = $groupuuid;
+        $this->queryParams['groupuuid']  = $groupUuid;
         $this->queryParams['subject']    = $subject;
         $this->queryParams['text']       = $text;
         $this->queryParams['attachment'] = $attachment;
@@ -952,9 +897,7 @@ abstract class AbstractSmartBotsCommands
      *
      * @see https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/set_http_callback
      *
-     * @param string $url
-     *                       The URL of your HTTP script. This script will get POST requests from the bot.
-     *                       Send an empty URL to disable HTTP callback.
+     * @param string $url    The URL of your HTTP script. This script will get POST requests from the bot. Send an empty URL to disable HTTP callback.
      * @param string $events
      *                       The events you want to receive, separated by a comma. See
      *                       https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/set_http_callback/HTTP_Bot_Callback_Events
@@ -968,7 +911,7 @@ abstract class AbstractSmartBotsCommands
      *               FAIL    - command failed
      *               resulttext      Detailed reason for the failure
      */
-    public function set_http_callback(string $url = '', string $events = '', string $custom = ''): array
+    public function setHttpCallback(string $url = '', string $events = '', string $custom = ''): array
     {
         $this->queryParams           = [];
         $this->queryParams['action'] = 'set_http_callback';
@@ -984,12 +927,9 @@ abstract class AbstractSmartBotsCommands
      *
      * @see https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/setrole
      *
-     * @param string $groupuuid
-     *                          the UUID of the group
-     * @param string $roleuuid
-     *                          the UUID of the group role. "Everyone" role is 00000000-0000-0000-0000-000000000000
-     * @param string $member
-     *                          the UUID of the avatar which should be moved to the specific role
+     * @param string $groupUuid the UUID of the group
+     * @param string $roleUuid  the UUID of the group role. "Everyone" role is 00000000-0000-0000-0000-000000000000
+     * @param string $member    the UUID of the avatar which should be moved to the specific role
      * @param string $custom
      *
      * @return array
@@ -998,15 +938,15 @@ abstract class AbstractSmartBotsCommands
      *               resulttext      Detailed reason for the failure
      */
     public function setrole(
-        string $groupuuid = '',
-        string $roleuuid = '',
+        string $groupUuid = '',
+        string $roleUuid = '',
         string $member = '',
         string $custom = ''
     ): array {
         $this->queryParams              = [];
         $this->queryParams['action']    = 'setrole';
-        $this->queryParams['groupuuid'] = $groupuuid;
-        $this->queryParams['roleuuid']  = $roleuuid;
+        $this->queryParams['groupuuid'] = $groupUuid;
+        $this->queryParams['roleuuid']  = $roleUuid;
         $this->queryParams['member']    = $member;
         $this->queryParams['custom']    = $custom;
 
@@ -1018,15 +958,14 @@ abstract class AbstractSmartBotsCommands
      *
      * @see https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/sim_access
      *
-     * @param string $avatar
-     *                            The resident to manage access for
+     * @param string $avatar      The resident to manage access for
      * @param string $operation
      *                            The operation to perform. One of the following:
      *                            ban         - add to ban list
      *                            unban       - remove from ban list
      *                            allow       - add to allowed list
      *                            disallow    - remove from allowed list
-     * @param int    $all_estates
+     * @param int    $allEstates
      *                            (optional) If TRUE (or 1), perform operation for all estates available for bot
      * @param string $custom
      *
@@ -1035,17 +974,17 @@ abstract class AbstractSmartBotsCommands
      *               FAIL    - command failed
      *               resulttext      Detailed reason for the failure
      */
-    public function sim_access(
+    public function simAccess(
         string $avatar = '',
         string $operation = '',
-        int $all_estates = 0,
+        int $allEstates = 0,
         string $custom = ''
     ): array {
         $this->queryParams                = [];
         $this->queryParams['action']      = 'sim_access';
         $this->queryParams['avatar']      = $avatar;
         $this->queryParams['operation']   = $operation;
-        $this->queryParams['all_estates'] = $all_estates;
+        $this->queryParams['all_estates'] = $allEstates;
         $this->queryParams['custom']      = $custom;
 
         return $this->runAction();
@@ -1056,8 +995,7 @@ abstract class AbstractSmartBotsCommands
      *
      * @see https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/sim_kick
      *
-     * @param string $avatar
-     *                       The resident to eject from the sim
+     * @param string $avatar The resident to eject from the sim
      * @param string $custom
      *
      * @return array
@@ -1065,7 +1003,7 @@ abstract class AbstractSmartBotsCommands
      *               FAIL    - command failed
      *               resulttext      Detailed reason for the failure
      */
-    public function sim_kick(string $avatar = '', string $custom = ''): array
+    public function simKick(string $avatar = '', string $custom = ''): array
     {
         $this->queryParams           = [];
         $this->queryParams['action'] = 'sim_kick';
@@ -1091,7 +1029,7 @@ abstract class AbstractSmartBotsCommands
      *               FAIL    - command failed
      *               resulttext      Detailed reason for the failure
      */
-    public function sim_restart(string $state = '', string $custom = ''): array
+    public function simRestart(string $state = '', string $custom = ''): array
     {
         $this->queryParams           = [];
         $this->queryParams['action'] = 'sim_restart';
@@ -1106,12 +1044,9 @@ abstract class AbstractSmartBotsCommands
      *
      * @see https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/sim_return
      *
-     * @param string $scripted
-     *                            Set to TRUE (or 1) to return scripted object only
-     * @param string $other
-     *                            Set to TRUE (or 1) to return objects on others land
-     * @param int    $all_estates
-     *                            Set to TRUE (or 1) to return on all estates available for bot
+     * @param string $scripted   Set to TRUE (or 1) to return scripted object only
+     * @param string $other      Set to TRUE (or 1) to return objects on others land
+     * @param int    $allEstates Set to TRUE (or 1) to return on all estates available for bot
      * @param string $custom
      *
      * @return array
@@ -1119,17 +1054,17 @@ abstract class AbstractSmartBotsCommands
      *               FAIL    - command failed
      *               resulttext      Detailed reason for the failure
      */
-    public function sim_return(
+    public function simReturn(
         string $scripted = '',
         string $other = '',
-        int $all_estates = 0,
+        int $allEstates = 0,
         string $custom = ''
     ): array {
         $this->queryParams                = [];
         $this->queryParams['action']      = 'sim_return';
         $this->queryParams['scripted']    = $scripted;
         $this->queryParams['other']       = $other;
-        $this->queryParams['all_estates'] = $all_estates;
+        $this->queryParams['all_estates'] = $allEstates;
         $this->queryParams['custom']      = $custom;
 
         return $this->runAction();
@@ -1140,8 +1075,7 @@ abstract class AbstractSmartBotsCommands
      *
      * @see https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/sim_send_message
      *
-     * @param string $message
-     *                        Set to TRUE (or 1) to return scripted object only
+     * @param string $message Set to TRUE (or 1) to return scripted object only
      * @param string $custom
      *
      * @return array
@@ -1149,7 +1083,7 @@ abstract class AbstractSmartBotsCommands
      *               FAIL    - command failed
      *               resulttext      Detailed reason for the failure
      */
-    public function sim_send_message(string $message = '', string $custom = ''): array
+    public function simSendMessage(string $message = '', string $custom = ''): array
     {
         $this->queryParams            = [];
         $this->queryParams['action']  = 'sim_send_message';
@@ -1164,11 +1098,8 @@ abstract class AbstractSmartBotsCommands
      *
      * @see https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/sit
      *
-     * @param string $uuid
-     *                       the UUID of the object to sit on. Use NONE instead of UUID to stand up.
-     * @param string $save
-     *                       (optional) set this parameter to 1 to save the UUID as a permanent sitting location.
-     *                       Bot will sit on this object after relog, crash and sim restart.
+     * @param string $uuid the UUID of the object to sit on. Use NONE instead of UUID to stand up.
+     * @param string $save (optional) set this parameter to 1 to save the UUID as a permanent sitting location. Bot will sit on this object after relog, crash and sim restart.
      * @param string $custom
      *
      * @return array
@@ -1193,11 +1124,9 @@ abstract class AbstractSmartBotsCommands
      *
      * @see https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/takeoff
      *
-     * @param string $uuid
-     *                       The inventory UUID of the item. Use the
-     *                       http://www.mysmartbots.com/docs/Personal_Bot_Control_Panel or
-     *                       https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/listinventory API command to
-     *                       get this UUID.
+     * @param string $uuid The inventory UUID of the item.
+     *                     Use the http://www.mysmartbots.com/docs/Personal_Bot_Control_Panel or https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/listinventory
+     *                     API command to get this UUID.
      * @param string $custom
      *
      * @return array
@@ -1247,10 +1176,8 @@ abstract class AbstractSmartBotsCommands
      *
      * @see https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/touch_attachment
      *
-     * @param string $objectname
-     *                           the name of the attached object (exact, including all spaces)
-     * @param string $linkset
-     *                           the link number of the object to touch. See the "Comments" section below.
+     * @param string $objectName the name of the attached object (exact, including all spaces)
+     * @param string $linkset    the link number of the object to touch. See the "Comments" section below.
      * @param string $custom
      *
      * @return array
@@ -1263,11 +1190,11 @@ abstract class AbstractSmartBotsCommands
      *               LINK NOT FOUND      - The object has been found, but it contains less prims than your
      *               "linkset" value
      */
-    public function touch_attachment(string $objectname = '', string $linkset = '', string $custom = ''): array
+    public function touchAttachment(string $objectName = '', string $linkset = '', string $custom = ''): array
     {
         $this->queryParams               = [];
         $this->queryParams['action']     = 'touch_attachment';
-        $this->queryParams['objectname'] = $objectname;
+        $this->queryParams['objectname'] = $objectName;
         $this->queryParams['linkset']    = $linkset;
         $this->queryParams['custom']     = $custom;
 
@@ -1281,8 +1208,7 @@ abstract class AbstractSmartBotsCommands
      *
      * @see https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/touch_prim
      *
-     * @param string $uuid
-     *                       the UUID of the required prim
+     * @param string $uuid the UUID of the required prim
      * @param string $custom
      *
      * @return array
@@ -1290,7 +1216,7 @@ abstract class AbstractSmartBotsCommands
      *               FAIL    - command failed
      *               resulttext      Detailed reason for the failure
      */
-    public function touch_prim(string $uuid = '', string $custom = ''): array
+    public function touchPrim(string $uuid = '', string $custom = ''): array
     {
         $this->queryParams           = [];
         $this->queryParams['action'] = 'touch_prim';
@@ -1307,14 +1233,10 @@ abstract class AbstractSmartBotsCommands
      *
      * @see https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/touch_prim_coord
      *
-     * @param float  $x
-     *                          the X coordinate (integer or float)
-     * @param float  $y
-     *                          the Y coordinate (integer or float)
-     * @param float  $z
-     *                          the Z coordinate (integer or float)
-     * @param float  $precision
-     *                          (optional) the precision. Default 0.5 meters
+     * @param float  $x         the X coordinate (integer or float)
+     * @param float  $y         the Y coordinate (integer or float)
+     * @param float  $z         the Z coordinate (integer or float)
+     * @param float  $precision (optional) the precision. Default 0.5 meters
      * @param string $custom
      *
      * @return array
@@ -1322,7 +1244,7 @@ abstract class AbstractSmartBotsCommands
      *               FAIL    - command failed
      *               resulttext      Detailed reason for the failure
      */
-    public function touch_prim_coord(
+    public function touchPrimCoord(
         float $x = 0.0,
         float $y = 0.0,
         float $z = 0.0,
@@ -1345,8 +1267,7 @@ abstract class AbstractSmartBotsCommands
      *
      * @see https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/wear
      *
-     * @param string $uuid
-     *                       The inventory UUID of the item. Use the
+     * @param string $uuid   The inventory UUID of the item. Use the
      *                       http://www.mysmartbots.com/docs/Personal_Bot_Control_Panel or
      *                       https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/listinventory API command to
      *                       get this UUID.
