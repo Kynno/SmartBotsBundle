@@ -11,7 +11,7 @@
 
 namespace Kynno\SmartBotsBundle\Service;
 
-class SmartBots extends AbstractSmartBotsCommands
+class SmartBotsClient extends AbstractSmartBotsCommands
 {
     /**
      * {@inheritdoc}
@@ -56,7 +56,7 @@ class SmartBots extends AbstractSmartBotsCommands
     /**
      * Get the first bot from your credentials.
      *
-     * @return SmartBots
+     * @return SmartBotsClient
      */
     public function getFirstBot(): self
     {
@@ -73,7 +73,7 @@ class SmartBots extends AbstractSmartBotsCommands
      *
      * @param string $name
      *
-     * @return SmartBots
+     * @return SmartBotsClient
      */
     public function getBot(string $name): self
     {

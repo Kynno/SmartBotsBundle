@@ -2,7 +2,7 @@
 
 namespace Kynno\SmartBotsBundle\Tests;
 
-use Kynno\SmartBotsBundle\Service\SmartBots;
+use Kynno\SmartBotsBundle\Service\SmartBotsClient;
 use Kynno\SmartBotsBundle\SmartBotsBundle;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Config\Loader\LoaderInterface;
@@ -17,7 +17,7 @@ class FunctionalTest extends TestCase
         $container = $kernel->getContainer();
 
         $smartbots = $container->get('kynno.smartbots');
-        $this->assertInstanceOf(SmartBots::class, $smartbots);
+        $this->assertInstanceOf(SmartBotsClient::class, $smartbots);
     }
 }
 

@@ -2,14 +2,14 @@
 
 namespace Kynno\SmartBotsBundle\Tests\Service;
 
-use Kynno\SmartBotsBundle\Service\SmartBots;
+use Kynno\SmartBotsBundle\Service\SmartBotsClient;
 use PHPUnit\Framework\TestCase;
 
 class SmartBotsTest extends TestCase
 {
     public function testGetFirstBot()
     {
-        $smartbots = new SmartBots('', '', [
+        $smartbots = new SmartBotsClient('', '', [
             'Kynno ' => [
                 'name'      => 'KynnoSystems Resident',
                 'botSecret' => 'pwd',
@@ -28,7 +28,7 @@ class SmartBotsTest extends TestCase
 
     public function testBot()
     {
-        $smartbots = new SmartBots('', '', [
+        $smartbots = new SmartBotsClient('', '', [
             'Kynno ' => [
                 'name'      => 'KynnoSystems Resident',
                 'botSecret' => 'pwd',

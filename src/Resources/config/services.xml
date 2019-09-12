@@ -4,7 +4,7 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services
         http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
-        <service id="kynno.smartbots" class="Kynno\SmartBotsBundle\Service\SmartBots" public="true"/>
-        <service id="Kynno\SmartBotsBundle\Service\SmartBots" alias="kynno.smartbots" />
+        <service id="kynno.smartbots" class="Kynno\SmartBotsBundle\Service\SmartBotsClient" public="true"/>
+        <service id="Kynno\SmartBotsBundle\Service\SmartBotsClient" alias="kynno.smartbots" />
     </services>
 </container>
