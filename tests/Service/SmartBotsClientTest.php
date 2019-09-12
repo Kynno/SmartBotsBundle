@@ -5,7 +5,7 @@ namespace Kynno\SmartBotsBundle\Tests\Service;
 use Kynno\SmartBotsBundle\Service\SmartBotsClient;
 use PHPUnit\Framework\TestCase;
 
-class SmartBotsTest extends TestCase
+class SmartBotsClientTest extends TestCase
 {
     public function testGetFirstBot()
     {
