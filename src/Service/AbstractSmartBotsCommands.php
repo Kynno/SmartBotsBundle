@@ -1144,6 +1144,25 @@ abstract class AbstractSmartBotsCommands
     }
 
     /**
+     * Returns the online status of the bot.
+     *
+     * @see https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/status
+     *
+     * @return array
+     *               result          OK      - command completed successfully
+     *               FAIL    - command failed
+     *               resulttext      Detailed reason for the failure
+     */
+    public function status(string $custom = ''): array
+    {
+        $this->queryParams           = [];
+        $this->queryParams['action'] = 'status';
+        $this->queryParams['custom'] = $custom;
+
+        return $this->runAction();
+    }
+
+    /**
      * Removes a clothing item, body part or attachment (the opposite of the
      * https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/wear command).
      *
