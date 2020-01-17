@@ -3,6 +3,8 @@ SmartBotsBundle
 [![Build Status](https://travis-ci.com/Kynno/SmartBotsBundle.svg?token=zRjaMaujwSVSWE7UcXcX&branch=master)](https://travis-ci.com/Kynno/SmartBotsBundle)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/kynno/SmartBotsBundle)
 ![GitHub](https://img.shields.io/github/license/kynno/SmartBotsBundle)
+[![SymfonyInsight](https://insight.symfony.com/projects/0624426a-53d0-4cbb-9d29-fce33a1eb331/mini.svg)](https://insight.symfony.com/projects/0624426a-53d0-4cbb-9d29-fce33a1eb331)
+
 
 [SmartBots](https://www.mysmartbots.com/) is a service provider which allows you to manage your Second Life group and/or control your Second Life bots. All SmartBots services use the abilities of SL bots: group inviters, group chat translators, automatic notice delivery system etc.
 
