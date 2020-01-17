@@ -60,9 +60,9 @@ class SmartBots extends AbstractSmartBotsCommands
      */
     public function getFirstBot(): self
     {
-        if (\is_string(\key($this->botList))) {
-            $this->botName   = $this->botList[\key($this->botList)]['name'];
-            $this->botSecret = $this->botList[\key($this->botList)]['botSecret'];
+        if (\is_string(key($this->botList))) {
+            $this->botName   = $this->botList[key($this->botList)]['name'];
+            $this->botSecret = $this->botList[key($this->botList)]['botSecret'];
         }
 
         return $this;
@@ -70,8 +70,6 @@ class SmartBots extends AbstractSmartBotsCommands
 
     /**
      * Select a specific bot to run the next commands.
-     *
-     * @param string $name
      *
      * @return SmartBots
      */

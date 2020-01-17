@@ -17,7 +17,7 @@ Prerequisites
 In order to use this bundle, you will need to get your [developer API Key](https://www.mysmartbots.com/process/adminbot.html).
 
 * PHP 7.1+
-* Symfony 3.4 / 4.0+
+* Symfony 3.4 / 4.0+ / 5.0+
 
 
 Installation 
@@ -87,7 +87,7 @@ Using the `SmartBots` service, you need to use these IDs instead of the full nam
 Of course, you can have only one bot.
 
 ---
-Once you configured your credentials, you can start using the service.
+Once you configured your credentials, you can start using the service `Kynno\SmartBotsBundle\Service\SmartBots`.
 
 ```php
 <?php

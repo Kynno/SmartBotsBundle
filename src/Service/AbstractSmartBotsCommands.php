@@ -30,8 +30,6 @@ abstract class AbstractSmartBotsCommands
     /**
      * Create the query string so that it can be accepted in a URL.
      * Inject credentials to the queryParams and return an URL-encoded string.
-     *
-     * @return string
      */
     private function buildQueryString(): string
     {
@@ -39,20 +37,18 @@ abstract class AbstractSmartBotsCommands
         $this->queryParams['botname'] = $this->botName;
         $this->queryParams['secret']  = $this->botSecret;
 
-        return \http_build_query($this->queryParams);
+        return http_build_query($this->queryParams);
     }
 
     /**
      * Run the command requested.
-     *
-     * @return array
      */
     private function runAction(): array
     {
         $queryResponseArray = [];
         $client             = HttpClient::create();
         $request            = $client->request('GET', $this->APIUrl . '?' . $this->buildQueryString());
-        \parse_str($request->getContent(), $queryResponseArray);
+        parse_str($request->getContent(), $queryResponseArray);
         $queryResponseArray['request_object'] = $request;
 
         if ('OK' !== $queryResponseArray['result']) {
@@ -79,7 +75,6 @@ abstract class AbstractSmartBotsCommands
      *                          LAND - set the group to the current parcel's group (see examples)
      *                          00000000-0000-0000-0000-000000000000 - remove active group
      *                          Obliviously, the bot has to be a member of the group already to activate it
-     * @param string $custom
      *
      * @return array
      *               result          OK      - command completed successfully
@@ -109,7 +104,6 @@ abstract class AbstractSmartBotsCommands
      *                           insensitive)
      * @param string $matchuuid
      *                           (optional) Return attachment with this UUID only
-     * @param string $custom
      *
      * @return array
      *               result          OK - command completed successfully
@@ -176,6 +170,28 @@ abstract class AbstractSmartBotsCommands
     }
 
     /**
+     * Returns the specific avatar's info.
+     *
+     * @see https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/avatar_info
+     *
+     * @param string $avatar the avatar UUID
+     *
+     * @return array
+     *               result          OK      - command completed successfully
+     *               FAIL    - command failed
+     *               resulttext      Detailed reason for the failure
+     */
+    public function avatar_info(string $avatar = '', string $custom = ''): array
+    {
+        $this->queryParams           = [];
+        $this->queryParams['action'] = 'avatar_info';
+        $this->queryParams['avatar'] = $avatar;
+        $this->queryParams['custom'] = $custom;
+
+        return $this->runAction();
+    }
+
+    /**
      * Returns a list of a resident's picks.
      *
      * @see https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/avatar_picks
@@ -189,7 +205,6 @@ abstract class AbstractSmartBotsCommands
      *                           (optional) Return only picks which names contain this substring (case insensitive)
      * @param string $matchuuid
      *                           (optional) Return pick with this parcel UUID only
-     * @param string $custom
      *
      * @return array
      *               result          OK - command completed successfully
@@ -223,8 +238,6 @@ abstract class AbstractSmartBotsCommands
      *
      * @see https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/get_balance
      *
-     * @param string $custom
-     *
      * @return array
      *               result          OK - command completed successfully
      *               FAIL - command failed
@@ -250,7 +263,6 @@ abstract class AbstractSmartBotsCommands
      * @param string $object
      *                       The inventory or folder UUID of the item. Use the Personal Bot Control Panel or
      *                       listinventory API command to get this UUID.
-     * @param string $custom
      *
      * @return array
      *               result          OK      - command completed successfully
@@ -279,7 +291,6 @@ abstract class AbstractSmartBotsCommands
      *                        The amount of money to give
      * @param string $comment
      *                        (optional) Text comment for the money transaction
-     * @param string $custom
      *
      * @return array
      *               result          OK      - command completed successfully
@@ -313,7 +324,6 @@ abstract class AbstractSmartBotsCommands
      *                            The amount of money to give
      * @param string $object_name
      *                            (optional) Object name
-     * @param string $custom
      *
      * @return array
      *               result          OK      - command completed successfully
@@ -345,7 +355,6 @@ abstract class AbstractSmartBotsCommands
      *                          the UUID of the resident
      * @param string $groupuuid
      *                          the UUID of the group
-     * @param string $custom
      *
      * @return array
      *               result          OK      - command completed successfully
@@ -376,7 +385,6 @@ abstract class AbstractSmartBotsCommands
      *                                 the UUID of the group role (NULL_KEY for "Everyone")
      * @param string $check_membership
      *                                 set to 1 if you want to ignore existing group members (see "Comments" below)
-     * @param string $custom
      *
      * @return array
      *               result          OK      - command completed successfully
@@ -408,7 +416,6 @@ abstract class AbstractSmartBotsCommands
      *
      * @param string $groupuuid
      *                          the UUID of the group
-     * @param string $custom
      *
      * @return array
      *               result          OK      - command completed successfully
@@ -432,7 +439,6 @@ abstract class AbstractSmartBotsCommands
      *
      * @param string $groupuuid
      *                          the UUID of the group
-     * @param string $custom
      *
      * @return array
      *               result          OK      - command completed successfully
@@ -458,7 +464,6 @@ abstract class AbstractSmartBotsCommands
      *                        Second Life login name of avatar or avatar UUID
      * @param string $message
      *                        The message to send
-     * @param string $custom
      *
      * @return array
      *               result          OK      - command completed successfully
@@ -486,7 +491,6 @@ abstract class AbstractSmartBotsCommands
      * @param int    $request_case
      *                             set to 1 if you want to get SL name in exact case (otherwise name may come in lower
      *                             case)
-     * @param string $custom
      *
      * @return array
      *               result          OK - command completed successfully
@@ -514,7 +518,6 @@ abstract class AbstractSmartBotsCommands
      *
      * @param string $groupuuid
      *                          the UUID of the group
-     * @param string $custom
      *
      * @return array
      *               result          OK      - command completed successfully
@@ -537,8 +540,6 @@ abstract class AbstractSmartBotsCommands
      * If you need to list groups of another avatar, use avatar_groups command.
      *
      * @see https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/list_group_roles
-     *
-     * @param string $custom
      *
      * @return array
      *               result          OK      - command completed successfully
@@ -567,7 +568,6 @@ abstract class AbstractSmartBotsCommands
      *                         - the object's name becomes URL-encoded
      *                         - current owner's permissions column added
      *                         - next owner's permissions column added
-     * @param string $custom
      *
      * @return array
      *               result          OK      - command completed successfully
@@ -593,7 +593,6 @@ abstract class AbstractSmartBotsCommands
      *                         The initial location to login. Leave blank for previous location.
      *                         Format: Region name/X/Y/Z
      *                         Use HOME instead of location to send the bot home (see examples below).
-     * @param string $custom
      *
      * @return array
      *               result          OK      - command completed successfully
@@ -612,8 +611,6 @@ abstract class AbstractSmartBotsCommands
 
     /**
      * Initiates bot logout sequence.
-     *
-     * @param string $custom
      *
      * @return array
      *               result          OK      - command completed successfully
@@ -648,7 +645,6 @@ abstract class AbstractSmartBotsCommands
      *                            START       - starts "instruction"
      *                            STOP        - stops "instruction"
      *                            (this value is ignored for STOP instruction)
-     * @param string $custom
      *
      * @return array
      *               result          OK      - command completed successfully
@@ -676,7 +672,6 @@ abstract class AbstractSmartBotsCommands
      * @param int    $request_case
      *                             (optional) set to 1 if you want to get the exact avatar name case from Second Life
      *                             (see Name case)
-     * @param string $custom
      *
      * @return array
      *               result          OK - command completed successfully
@@ -707,7 +702,6 @@ abstract class AbstractSmartBotsCommands
      *                        the UUID of the resident
      * @param string $message
      *                        (optional) optional message to send
-     * @param string $custom
      *
      * @return array
      *               result          OK      - command completed successfully
@@ -734,7 +728,6 @@ abstract class AbstractSmartBotsCommands
      *                        the UUID of the resident
      * @param string $message
      *                        (optional) optional message to send
-     * @param string $custom
      *
      * @return array
      *               result          OK      - command completed successfully
@@ -763,7 +756,6 @@ abstract class AbstractSmartBotsCommands
      *                         (optional) the Y coordinate of the point in parcel
      * @param string $getvalue
      *                         (optional) limit return list to this entry (see return values below)
-     * @param string $custom
      *
      * @return array
      *               result              OK      - command completed successfully
@@ -805,8 +797,6 @@ abstract class AbstractSmartBotsCommands
      *
      * @see https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/rebake
      *
-     * @param string $custom
-     *
      * @return array
      *               result          OK      - command completed successfully
      *               FAIL    - command failed
@@ -832,7 +822,6 @@ abstract class AbstractSmartBotsCommands
      *                        UUID of the object which sent us the dialog
      * @param string $button
      *                        the text of the dialog button to press
-     * @param string $custom
      *
      * @return array
      *               result          OK      - command completed successfully
@@ -864,7 +853,6 @@ abstract class AbstractSmartBotsCommands
      *                        the channel to say message over (0 - public chat)
      * @param string $message
      *                        The message to send
-     * @param string $custom
      *
      * @return array
      *               result          OK      - command completed successfully
@@ -891,7 +879,6 @@ abstract class AbstractSmartBotsCommands
      *                          the UUID of the group
      * @param string $message
      *                          the text to send (can contain international characters)
-     * @param string $custom
      *
      * @return array
      *               result          OK      - command completed successfully
@@ -922,7 +909,6 @@ abstract class AbstractSmartBotsCommands
      *                           the text of the notice (can contain international characters)
      * @param string $attachment
      *                           (optional) inventory UUID of the attachment (see below)
-     * @param string $custom
      *
      * @return array
      *               result          OK      - command completed successfully
@@ -961,7 +947,6 @@ abstract class AbstractSmartBotsCommands
      *                       for complete a list of events. Separate events by comma if you want to monitor several of
      *                       them: events=group_invite,teleport_offer Specify events=all to monitor all possible
      *                       events.
-     * @param string $custom
      *
      * @return array
      *               result          OK      - command completed successfully
@@ -990,7 +975,6 @@ abstract class AbstractSmartBotsCommands
      *                          the UUID of the group role. "Everyone" role is 00000000-0000-0000-0000-000000000000
      * @param string $member
      *                          the UUID of the avatar which should be moved to the specific role
-     * @param string $custom
      *
      * @return array
      *               result          OK      - command completed successfully
@@ -1028,7 +1012,6 @@ abstract class AbstractSmartBotsCommands
      *                            disallow    - remove from allowed list
      * @param int    $all_estates
      *                            (optional) If TRUE (or 1), perform operation for all estates available for bot
-     * @param string $custom
      *
      * @return array
      *               result          OK      - command completed successfully
@@ -1058,7 +1041,6 @@ abstract class AbstractSmartBotsCommands
      *
      * @param string $avatar
      *                       The resident to eject from the sim
-     * @param string $custom
      *
      * @return array
      *               result          OK      - command completed successfully
@@ -1081,10 +1063,9 @@ abstract class AbstractSmartBotsCommands
      * @see https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/sim_restart
      *
      * @param string $state
-     *                       The restart state:
-     *                       begin   - begin restarting current sim (the restart occurs in 120 seconds)
-     *                       cancel  - stop restarting sim
-     * @param string $custom
+     *                      The restart state:
+     *                      begin   - begin restarting current sim (the restart occurs in 120 seconds)
+     *                      cancel  - stop restarting sim
      *
      * @return array
      *               result          OK      - command completed successfully
@@ -1112,7 +1093,6 @@ abstract class AbstractSmartBotsCommands
      *                            Set to TRUE (or 1) to return objects on others land
      * @param int    $all_estates
      *                            Set to TRUE (or 1) to return on all estates available for bot
-     * @param string $custom
      *
      * @return array
      *               result          OK      - command completed successfully
@@ -1142,7 +1122,6 @@ abstract class AbstractSmartBotsCommands
      *
      * @param string $message
      *                        Set to TRUE (or 1) to return scripted object only
-     * @param string $custom
      *
      * @return array
      *               result          OK      - command completed successfully
@@ -1165,11 +1144,10 @@ abstract class AbstractSmartBotsCommands
      * @see https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/sit
      *
      * @param string $uuid
-     *                       the UUID of the object to sit on. Use NONE instead of UUID to stand up.
+     *                     the UUID of the object to sit on. Use NONE instead of UUID to stand up.
      * @param string $save
-     *                       (optional) set this parameter to 1 to save the UUID as a permanent sitting location.
-     *                       Bot will sit on this object after relog, crash and sim restart.
-     * @param string $custom
+     *                     (optional) set this parameter to 1 to save the UUID as a permanent sitting location.
+     *                     Bot will sit on this object after relog, crash and sim restart.
      *
      * @return array
      *               result          OK      - command completed successfully
@@ -1188,17 +1166,35 @@ abstract class AbstractSmartBotsCommands
     }
 
     /**
+     * Returns the online status of the bot.
+     *
+     * @see https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/status
+     *
+     * @return array
+     *               result          OK      - command completed successfully
+     *               FAIL    - command failed
+     *               resulttext      Detailed reason for the failure
+     */
+    public function status(string $custom = ''): array
+    {
+        $this->queryParams           = [];
+        $this->queryParams['action'] = 'status';
+        $this->queryParams['custom'] = $custom;
+
+        return $this->runAction();
+    }
+
+    /**
      * Removes a clothing item, body part or attachment (the opposite of the
      * https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/wear command).
      *
      * @see https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/takeoff
      *
      * @param string $uuid
-     *                       The inventory UUID of the item. Use the
-     *                       http://www.mysmartbots.com/docs/Personal_Bot_Control_Panel or
-     *                       https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/listinventory API command to
-     *                       get this UUID.
-     * @param string $custom
+     *                     The inventory UUID of the item. Use the
+     *                     http://www.mysmartbots.com/docs/Personal_Bot_Control_Panel or
+     *                     https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/listinventory API command to
+     *                     get this UUID.
      *
      * @return array
      *               result          OK      - command completed successfully
@@ -1224,7 +1220,6 @@ abstract class AbstractSmartBotsCommands
      *                         address of the new location
      *                         Format: Region name/X/Y/Z
      *                         Use HOME instead of location to send the bot home (see examples below)
-     * @param string $custom
      *
      * @return array
      *               result          OK      - command completed successfully
@@ -1251,7 +1246,6 @@ abstract class AbstractSmartBotsCommands
      *                           the name of the attached object (exact, including all spaces)
      * @param string $linkset
      *                           the link number of the object to touch. See the "Comments" section below.
-     * @param string $custom
      *
      * @return array
      *               result          OK      - command completed successfully
@@ -1282,8 +1276,7 @@ abstract class AbstractSmartBotsCommands
      * @see https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/touch_prim
      *
      * @param string $uuid
-     *                       the UUID of the required prim
-     * @param string $custom
+     *                     the UUID of the required prim
      *
      * @return array
      *               result          OK      - command completed successfully
@@ -1307,15 +1300,14 @@ abstract class AbstractSmartBotsCommands
      *
      * @see https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/touch_prim_coord
      *
-     * @param float  $x
-     *                          the X coordinate (integer or float)
-     * @param float  $y
-     *                          the Y coordinate (integer or float)
-     * @param float  $z
-     *                          the Z coordinate (integer or float)
-     * @param float  $precision
-     *                          (optional) the precision. Default 0.5 meters
-     * @param string $custom
+     * @param float $x
+     *                         the X coordinate (integer or float)
+     * @param float $y
+     *                         the Y coordinate (integer or float)
+     * @param float $z
+     *                         the Z coordinate (integer or float)
+     * @param float $precision
+     *                         (optional) the precision. Default 0.5 meters
      *
      * @return array
      *               result          OK      - command completed successfully
@@ -1346,11 +1338,10 @@ abstract class AbstractSmartBotsCommands
      * @see https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/wear
      *
      * @param string $uuid
-     *                       The inventory UUID of the item. Use the
-     *                       http://www.mysmartbots.com/docs/Personal_Bot_Control_Panel or
-     *                       https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/listinventory API command to
-     *                       get this UUID.
-     * @param string $custom
+     *                     The inventory UUID of the item. Use the
+     *                     http://www.mysmartbots.com/docs/Personal_Bot_Control_Panel or
+     *                     https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/listinventory API command to
+     *                     get this UUID.
      *
      * @return array
      *               result          OK      - command completed successfully
