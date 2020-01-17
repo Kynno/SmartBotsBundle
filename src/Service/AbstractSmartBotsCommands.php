@@ -170,6 +170,28 @@ abstract class AbstractSmartBotsCommands
     }
 
     /**
+     * Returns the specific avatar's info.
+     *
+     * @see https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/avatar_info
+     *
+     * @param string $avatar the avatar UUID
+     *
+     * @return array
+     *               result          OK      - command completed successfully
+     *               FAIL    - command failed
+     *               resulttext      Detailed reason for the failure
+     */
+    public function avatar_info(string $avatar = '', string $custom = ''): array
+    {
+        $this->queryParams           = [];
+        $this->queryParams['action'] = 'avatar_info';
+        $this->queryParams['avatar'] = $avatar;
+        $this->queryParams['custom'] = $custom;
+
+        return $this->runAction();
+    }
+
+    /**
      * Returns a list of a resident's picks.
      *
      * @see https://www.mysmartbots.com/dev/docs/HTTP_API/Bot_Commands/avatar_picks
